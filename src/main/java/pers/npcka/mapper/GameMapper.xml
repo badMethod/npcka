@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.npcka.dao.GameMapper">
+  <resultMap id="BaseResultMap" type="pers.npcka.model.Game">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="tag" jdbcType="INTEGER" property="tag" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="platform" jdbcType="INTEGER" property="platform" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pers.npcka.model.Game">
+    insert into game (id, name, icon, 
+      tag, image, version, 
+      size, platform, operator, 
+      price, update_time, desc
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{platform,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pers.npcka.model.Game">
+    update game
+    set name = #{name,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=INTEGER},
+      operator = #{operator,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      desc = #{desc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, icon, tag, image, version, size, platform, operator, price, update_time, 
+    desc
+    from game
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, icon, tag, image, version, size, platform, operator, price, update_time, 
+    desc
+    from game
+  </select>
+</mapper>

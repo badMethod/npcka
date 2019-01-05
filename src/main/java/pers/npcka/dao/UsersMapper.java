@@ -1,8 +1,11 @@
 package pers.npcka.dao;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 import pers.npcka.model.Users;
 
+import java.util.List;
+
+@Repository
 public interface UsersMapper {
     int deleteByPrimaryKey(Integer id);
 

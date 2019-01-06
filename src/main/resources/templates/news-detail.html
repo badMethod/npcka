@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>楚游网</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/images/1.png">
+</head>
+<body>
+<div class="warping">
+    <header>
+        <div class="header-content clearfix">
+            <h5>
+                <img src="/images/1.png" alt="">
+                <span>欢迎来到楚游网！手游第一门户站</span>
+            </h5>
+            <ul class="clearfix">
+                <li><a href="/index"><i></i>首页</a></li>
+                <li><a href="/login"><i></i>登录 |</a></li>
+                <li><a href="/register"><i></i>注册</a></li>
+            </ul>
+        </div>
+    </header>
+    <nav class="clearfix">
+        <div class="nav-content clearfix">
+            <a class="img" href="#"><img src="/images/2.png" alt=""></a>
+            <ul class="clearfix">
+                <li>
+                    <a href="/index">首页</a>
+                </li>
+                <li id="news"><a href="/news">资讯</a></li>
+                <li><a href="/server">开服表</a></li>
+                <li><a href="/gift">礼包</a></li>
+                <li id="guide"><a href="/guide">攻略</a></li>
+                <li><a href="/answer">问答</a></li>
+            </ul>
+            <div class="input">
+                <input type="text" placeholder="请输入关键字">
+                <i></i>
+            </div>
+        </div>
+    </nav>
+    <div class="bannerbg">
+    </div>
+    <div class="zixun-content">
+        <div class="title">
+            <h3 id="name"></h3>
+            <p>
+                <i class="i1"></i>
+                发表时间：<span id="createTime">2019年01月06日</span>
+            </p>
+        </div>
+        <div class="banner">
+            <img src="/images/ban_03.png" alt="">
+        </div>
+        <p class="p1" id="content">
+        </p>
+        <p class="p3">
+            <span class="s4">
+                【编辑：<span id="editor">雅妮妹妹</span>】
+            </span>
+        </p>
+        <div class="comment clearfix">
+            <p class="head">
+                评论（<span>0</span>人参与，<span>0</span>条评论）
+            </p>
+            <div class="input-box clearfix">
+                <a class="img-left" href="#">
+                    <img src="/images/man_03.png" alt="">
+                </a>
+                <div class="input">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="快来说点什么吧......"></textarea>
+                    <div class="publish clearfix">
+                        <i></i>
+                        <input type="submit" value="发布">
+                    </div>
+                </div>
+            </div>
+            <div class="log">
+                <a class="a1" href="/login">
+                    <i></i>
+                    登录
+                </a>
+            </div>
+            <p class="p4">
+                还没有评论，快点来抢沙发吧
+            </p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="t1 clearfix">
+                    <span class="s1">
+                        友情链接
+                    </span>
+                <p>
+                    <a href="#">腾讯先游礼包</a>
+                    <a href="#">手游发号</a>
+                    <a href="#">网易发卡中心</a>
+                    <a href="#">2144手机游戏</a>
+                    <span class="s2">（友链合作联系QQ:914755657）</span>
+                </p>
+            </div>
+            <div class="t1 clearfix">
+                    <span class="s1">
+                        合作伙伴
+                    </span>
+                <p>
+                    <a href="#">着迷网</a>
+                    <a href="#">超好玩</a>
+                    <a href="#">第一应用</a>
+                    <span class="s2">（友链合作联系QQ:914755657）</span>
+                </p>
+            </div>
+            <div class="bottomfoot clearfix">
+                <a class="img-left" href="#">
+                    <img src="/images/l2.png" alt="">
+                </a>
+                <div class="text-right">
+                    <p>网站备案：《网络文化经营许可证》编号：鄂网文【2016】0855-011号 鄂ICP备11004443号</p>
+                    <p>版权所有：武汉乐游天地科技有限公司</p>
+                    <a href="#"><img src="/images/gw_83x30.png" alt=""></a>
+                    <a href="#"><img src="/images/sm_124x47.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<input id="id" th:value="${id}" type="hidden">
+<input id="type" th:value="${type}" type="hidden">
+</body>
+<script src="/js/jquery-3.1.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var t = $("#type").val()
+        if (t == 1) {
+            $("#news").addClass("on")
+        }
+        if (t == 2) {
+            $("#guide").addClass("on")
+        }
+        $.ajax({
+            url: "getNews",
+            type: "post",
+            dataType: "json",
+            data: {id: $("#id").val(), type: $("#type").val()},
+            success: function (data) {
+                var guide = data.guide;
+                $("#name").html(guide.name);
+                $("#createTime").html(guide.createTime);
+                $("#content").html(guide.content);
+                $("#editor").html(guide.editor);
+            }
+        })
+    })
+</script>
+</html>

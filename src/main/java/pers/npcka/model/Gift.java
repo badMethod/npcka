@@ -21,6 +21,16 @@ public class Gift {
 
     private Integer isPop;
 
+    private Game game;
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -91,5 +101,21 @@ public class Gift {
 
     public void setIsPop(Integer isPop) {
         this.isPop = isPop;
+    }
+
+    @Override
+    public String toString() {
+        return "Gift{" +
+                "id=" + id +
+                ", gameId=" + gameId +
+                ", name='" + name + '\'' +
+                ", total=" + total +
+                ", remainder=" + remainder +
+                ", content='" + content + '\'' +
+                ", method='" + method + '\'' +
+                ", createTime=" + createTime +
+                ", isPop=" + isPop +
+                ", game=" + game +
+                '}';
     }
 }

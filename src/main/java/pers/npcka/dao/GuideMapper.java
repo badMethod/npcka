@@ -1,8 +1,12 @@
 package pers.npcka.dao;
 
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 import pers.npcka.model.Guide;
 
+import java.util.List;
+
+@Repository
 public interface GuideMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +17,6 @@ public interface GuideMapper {
     List<Guide> selectAll();
 
     int updateByPrimaryKey(Guide record);
+
+    List<Guide> getGuideListByPage(@Param("page") int page, @Param("pageSize") int pageSize, @Param("type") int type);
 }

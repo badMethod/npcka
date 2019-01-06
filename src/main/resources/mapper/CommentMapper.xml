@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="pers.npcka.model.Comment">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="guide_id" jdbcType="INTEGER" property="guideId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="comment_id" jdbcType="INTEGER" property="commentId" />
@@ -16,16 +17,19 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="pers.npcka.model.Comment">
-    insert into comment (id, user_id, create_time, 
-      type, comment_id, fav_num, 
-      content, is_best)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{type,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER}, #{favNum,jdbcType=INTEGER}, 
-      #{content,jdbcType=VARCHAR}, #{isBest,jdbcType=INTEGER})
+    insert into comment (id, user_id, guide_id, 
+      create_time, type, comment_id, 
+      fav_num, content, is_best
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{guideId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER}, 
+      #{favNum,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{isBest,jdbcType=INTEGER}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="pers.npcka.model.Comment">
     update comment
     set user_id = #{userId,jdbcType=INTEGER},
+      guide_id = #{guideId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       type = #{type,jdbcType=INTEGER},
       comment_id = #{commentId,jdbcType=INTEGER},
@@ -35,12 +39,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, user_id, create_time, type, comment_id, fav_num, content, is_best
+    select id, user_id, guide_id, create_time, type, comment_id, fav_num, content, is_best
     from comment
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, user_id, create_time, type, comment_id, fav_num, content, is_best
+    select id, user_id, guide_id, create_time, type, comment_id, fav_num, content, is_best
     from comment
   </select>
 </mapper>

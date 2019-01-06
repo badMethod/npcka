@@ -1,25 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.npcka.dao.GameMapper">
-  <resultMap id="BaseResultMap" type="pers.npcka.model.Game">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="tag" jdbcType="INTEGER" property="tag" />
-    <result column="image" jdbcType="VARCHAR" property="image" />
-    <result column="version" jdbcType="VARCHAR" property="version" />
-    <result column="size" jdbcType="VARCHAR" property="size" />
-    <result column="platform" jdbcType="INTEGER" property="platform" />
-    <result column="operator" jdbcType="VARCHAR" property="operator" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <resultMap id="BaseResultMap" type="pers.npcka.model.Game">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="tag" jdbcType="INTEGER" property="tag"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="size" jdbcType="VARCHAR" property="size"/>
+        <result column="platform" jdbcType="INTEGER" property="platform"/>
+        <result column="operator" jdbcType="VARCHAR" property="operator"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="desc" jdbcType="LONGVARCHAR" property="desc"/>
+    </resultMap>
+
+
+    <resultMap id="GameGiftResultMap" type="pers.npcka.model.Game">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="tag" jdbcType="INTEGER" property="tag"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="size" jdbcType="VARCHAR" property="size"/>
+        <result column="platform" jdbcType="INTEGER" property="platform"/>
+        <result column="operator" jdbcType="VARCHAR" property="operator"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="desc" jdbcType="LONGVARCHAR" property="desc"/>
+        <collection property="gifts" ofType="pers.npcka.model.Gift">
+            <id column="gift_id" jdbcType="INTEGER" property="id"/>
+            <result column="game_id" jdbcType="INTEGER" property="gameId"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="total" jdbcType="INTEGER" property="total"/>
+            <result column="remainder" jdbcType="INTEGER" property="remainder"/>
+            <result column="content" jdbcType="VARCHAR" property="content"/>
+            <result column="method" jdbcType="VARCHAR" property="method"/>
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="is_pop" jdbcType="INTEGER" property="isPop"/>
+        </collection>
+    </resultMap>
+
+
+    <resultMap id="GameServerResultMap" type="pers.npcka.model.Game">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="tag" jdbcType="INTEGER" property="tag"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="size" jdbcType="VARCHAR" property="size"/>
+        <result column="platform" jdbcType="INTEGER" property="platform"/>
+        <result column="operator" jdbcType="VARCHAR" property="operator"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="desc" jdbcType="LONGVARCHAR" property="desc"/>
+        <collection property="gameServers" ofType="pers.npcka.model.GameServer">
+            <id column="server_id" jdbcType="INTEGER" property="id"/>
+            <result column="game_id" jdbcType="INTEGER" property="gameId"/>
+            <result column="server_name" jdbcType="VARCHAR" property="serverName"/>
+            <result column="open_server_time" jdbcType="TIMESTAMP" property="openServerTime"/>
+        </collection>
+    </resultMap>
+
+    <select id="getAllGameGift" resultMap="GameGiftResultMap">
+        SELECT t1.id,t1.name,t1.icon,t1.tag,t1.image,t1.`desc`,t1.platform,t1.version,t1.size,t1.operator,t2.id as gift_id,t2.name,t2.total,t2.remainder,t2.content,t2.method,t2.is_pop
+        FROM game t1
+        LEFT JOIN gift t2 ON t1.id = t2.game_id
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from game
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="pers.npcka.model.Game">
+    <insert id="insert" parameterType="pers.npcka.model.Game">
     insert into game (id, name, icon, 
       tag, image, version, 
       size, platform, operator, 
@@ -31,7 +88,7 @@
       #{price,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="pers.npcka.model.Game">
+    <update id="updateByPrimaryKey" parameterType="pers.npcka.model.Game">
     update game
     set name = #{name,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
@@ -46,13 +103,13 @@
       desc = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, name, icon, tag, image, version, size, platform, operator, price, update_time, 
     desc
     from game
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
     select id, name, icon, tag, image, version, size, platform, operator, price, update_time, 
     desc
     from game

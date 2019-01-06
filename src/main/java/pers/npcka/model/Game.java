@@ -2,6 +2,7 @@ package pers.npcka.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Game {
     private Integer id;
@@ -27,6 +28,26 @@ public class Game {
     private Date updateTime;
 
     private String desc;
+
+    private List<Gift> gifts;
+
+    private List<GameServer> gameServers;
+
+    public List<GameServer> getGameServers() {
+        return gameServers;
+    }
+
+    public void setGameServers(List<GameServer> gameServers) {
+        this.gameServers = gameServers;
+    }
+
+    public List<Gift> getGifts() {
+        return gifts;
+    }
+
+    public void setGifts(List<Gift> gifts) {
+        this.gifts = gifts;
+    }
 
     public Integer getId() {
         return id;
@@ -122,5 +143,25 @@ public class Game {
 
     public void setDesc(String desc) {
         this.desc = desc == null ? null : desc.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", tag=" + tag +
+                ", image='" + image + '\'' +
+                ", version='" + version + '\'' +
+                ", size='" + size + '\'' +
+                ", platform=" + platform +
+                ", operator='" + operator + '\'' +
+                ", price=" + price +
+                ", updateTime=" + updateTime +
+                ", desc='" + desc + '\'' +
+                ", gifts=" + gifts +
+                ", gameServers=" + gameServers +
+                '}';
     }
 }

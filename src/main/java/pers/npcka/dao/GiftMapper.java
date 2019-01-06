@@ -1,8 +1,11 @@
 package pers.npcka.dao;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 import pers.npcka.model.Gift;
 
+import java.util.List;
+
+@Repository
 public interface GiftMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +16,6 @@ public interface GiftMapper {
     List<Gift> selectAll();
 
     int updateByPrimaryKey(Gift record);
+
+    Gift getGiftDetailById(int id);
 }

@@ -7,6 +7,8 @@ public class Comment {
 
     private Integer userId;
 
+    private Integer guideId;
+
     private Date createTime;
 
     private Integer type;
@@ -33,6 +35,14 @@ public class Comment {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getGuideId() {
+        return guideId;
+    }
+
+    public void setGuideId(Integer guideId) {
+        this.guideId = guideId;
     }
 
     public Date getCreateTime() {

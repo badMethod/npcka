@@ -1,5 +1,7 @@
 package pers.npcka.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Guide {
@@ -21,9 +23,20 @@ public class Guide {
 
     private Integer type;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private String content;
+
+    private String desc;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public Integer getId() {
         return id;

@@ -1,8 +1,10 @@
 package pers.npcka.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
+public class Comment implements Serializable {
+    private static final long serialVersionUID = -8060267776041596094L;
     private Integer id;
 
     private Integer userId;

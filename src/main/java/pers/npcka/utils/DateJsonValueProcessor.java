@@ -51,5 +51,6 @@ public class DateJsonValueProcessor implements JsonValueProcessor {
     private Object process(Object value) {  
     return dateFormat.format((Date) value);  
   
-    }  
-}  
+    }
+
+}

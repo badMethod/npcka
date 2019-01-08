@@ -8,15 +8,17 @@ import java.util.List;
 
 @Repository
 public interface GuideMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id) throws Exception;
 
-    int insert(Guide record);
+    int insert(Guide record) throws Exception;
 
-    Guide selectByPrimaryKey(Integer id);
+    Guide selectByPrimaryKey(Integer id) throws Exception;
 
-    List<Guide> selectAll();
+    List<Guide> selectAll() throws Exception;
 
-    int updateByPrimaryKey(Guide record);
+    int updateByPrimaryKey(Guide record) throws Exception;
 
-    List<Guide> getGuideListByPage(@Param("page") int page, @Param("pageSize") int pageSize, @Param("type") int type);
+    List<Guide> getGuideListByPage(@Param("page") int page, @Param("pageSize") int pageSize, @Param("type") int type) throws Exception;
+
+    int getGuideCount(int type) throws Exception;
 }

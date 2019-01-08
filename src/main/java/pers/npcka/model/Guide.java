@@ -2,9 +2,11 @@ package pers.npcka.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Guide {
+public class Guide implements Serializable {
+    private static final long serialVersionUID = 1379413324101299849L;
     private Integer id;
 
     private Integer gameId;

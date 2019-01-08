@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/1.png">
     <link rel="stylesheet" href="swiper/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="layui/layui.css">
 </head>
 <body>
     <div class="warping">
@@ -63,130 +64,13 @@
                                 <span>时间</span>
                                 <span class="li">礼包</span>
                             </li>
-                            <li class="li">
-                                <span class="s1">挂机吧公主</span>
-                                <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                <span class="s2">06月06日</span>
-                                <a href="#">
-                                    领取
-                                </a>
-                            </li>
-                            <li class="li">
-                                <span class="s1">挂机吧公主</span>
-                                <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                <span class="s2">06月06日</span>
-                                <a href="#">
-                                    领取
-                                </a>
-                            </li>
-                            <li class="li">
-                                <span class="s1">挂机吧公主</span>
-                                <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                <span class="s2">06月06日</span>
-                                <a href="#">
-                                    领取
-                                </a>
-                            </li>
-                            <li class="li">
-                                <span class="s1">挂机吧公主</span>
-                                <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                <span class="s2">06月06日</span>
-                                <a href="#">
-                                    领取
-                                </a>
-                            </li>
-                            <li class="li">
-                                <span class="s1">挂机吧公主</span>
-                                <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                <span class="s2">06月06日</span>
-                                <a href="#">
-                                    领取
-                                </a>
-                            </li>
-                            <li class="li">
-                                <span class="s1">挂机吧公主</span>
-                                <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                <span class="s2">06月06日</span>
-                                <a href="#">
-                                    领取
-                                </a>
-                            </li>
-                            <li class="li">
-                                <span class="s1">挂机吧公主</span>
-                                <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                <span class="s2">06月06日</span>
-                                <a href="#">
-                                    领取
-                                </a>
-                            </li>
+                            <div id="newestGift"></div>
                         </ul>
                     </div>
                 </div>
                 <div class="libao-banner-content-bottom gift">
                     <ul class="clearfix">
-                        <li>
-                            <div class="img-left">
-                                <img src="images/2-6.png" alt="">
-                            </div>
-                            <div class="txt-right">
-                                <p class="p-txt01">仙剑奇侠传3D回合高级礼包</p>
-                                <p>
-                                    平台：
-                                    <i class="icon-android-green"></i>|
-                                    <i class="icon-apple-red"></i>
-                                    <a class="btn" href="#">领取</a>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img-left">
-                                <img src="http://p1.npcka.com/2016/08/08/57a841489f2ec.png" alt="">
-                            </div>
-                            <div class="txt-right">
-                                <p class="p-txt01">仙剑奇侠传3D回合高级礼包</p>
-                                <p>
-                                    平台：
-                                    <i class="icon-android-green"></i>|
-                                    <i class="icon-apple-red"></i>
-                                    <a class="btn" href="#">领取</a>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img-left">
-                                <img src="http://p1.npcka.com/2016/09/13/57d7c30637cb6.gif" alt="">
-                            </div>
-                            <div class="txt-right">
-                                <p class="p-txt01">仙剑奇侠传3D回合高级礼包</p>
-                                <p>
-                                    平台：
-                                    <i class="icon-android-green"></i>|
-                                    <i class="icon-apple-red"></i>
-                                    <a class="btn" href="#">领取</a>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img-left">
-                                <img src="http://p1.npcka.com/2016/06/24/576d02f8b4b42.jpg" alt="">
-                            </div>
-                            <div class="txt-right">
-                                <p class="p-txt01">仙剑奇侠传3D回合高级礼包</p>
-                                <p>
-                                    平台：
-                                    <i class="icon-android-green"></i>|
-                                    <i class="icon-apple-red"></i>
-                                    <a class="btn" href="#">领取</a>
-                                </p>
-                            </div>
-                        </li>
+                        <div id="popGift"></div>
                     </ul>
                 </div>
             </div>
@@ -198,292 +82,25 @@
                         最新最全的礼包列表
                 </span>
                 <div class="input">
-                    <input type="text" placeholder="请输入关键字">
+                    <input type="text" id="keyword" placeholder="请输入关键字">
                     <i></i>
                 </div>
             </h2>
             <ul class="gift-list-ul clearfix">
                 <li class="left">
                     <ul>
-                        <li class="li1 clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
+                        <div id="leftAll"></div>
                     </ul>
                 </li>
                 <li class="right left ">
                     <ul>
-                        <li class="li1 clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/28/579977882226e.png" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/28/579977882226e.png" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/28/579977882226e.png" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/28/579977882226e.png" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/28/579977882226e.png" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
-                        <li class="clearfix">
-                            <a class="img-left" href="#">
-                                <img src="http://p1.npcka.com/2016/07/28/579977882226e.png" alt="">
-                            </a>
-                            <div class="text-right">
-                                <h3>
-                                    陆小凤传奇盛夏解暑礼包
-                                </h3>
-                                <p>
-                                    今日新增 <span>2</span>个
-                                    共 <span>16</span>个
-                                </p>
-                                <p>
-                                    系统：
-                                    <i class="i1"><img src="images/gift1.png" alt=""></i>|
-                                    <i class="i2"><img src="images/gift2.png" alt=""></i>
-                                    剩余： <span>152635</span>个
-                                </p>
-                            </div>
-                            <p class="time">2016-10-25</p>
-                            <a class="lingqu" href="#">领取</a>
-                        </li>
+                        <div id="rightAll"></div>
                     </ul>
                 </li>
             </ul>
-            <div class="page">
-                <a class="a1" href="#">首页</a>
-                <a class="a2" href="#">上一页</a>
-                <a class="a3 on" href="#">1</a>
-                <a class="a3" href="#">2</a>
-                <a class="a3" href="#">3</a>
-                <a class="a4" href="#">下一页</a>
-                <a class="a5" href="#">末页</a>
+            <div class="page" id="pagination">
+                <div id="demo4"></div>
+            </div>
             </div>
         </div>
         <footer>
@@ -526,22 +143,312 @@
         </footer>
     </div>
 
-    <!-- Swiper JS -->
-    <script src="swiper/swiper-3.3.1.min.js"></script>
+<!-- Swiper JS -->
+<script src="swiper/swiper-3.3.1.min.js"></script>
 
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            paginationClickable: true,
-            spaceBetween: 30,
-            centeredSlides: true,
-            autoplay: 5000,
-            loop:true,
-            autoplayDisableOnInteraction: false
-        });
-    </script>
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 5000,
+        loop:true,
+        autoplayDisableOnInteraction: false
+    });
+</script>
+<input type="hidden" id="nums" value="7">
+<input type="hidden" id="pageSize" value="8">
 </body>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script>
+    $(document).ready(function () {
+        getNewest($("#nums").val());
+        getPop();
+
+        $.ajax({
+            type: "post",
+            data: {pageSize:$("#pageSize").val(),keyword:$("#keyword").val()},
+            dataType: "json",
+            url:"/gift/getGiftTotalPage",
+            success:function (data) {
+                var totalPage = data.totalPage;
+
+                layui.use(['laypage', 'layer'], function(){
+                    var laypage = layui.laypage
+                        ,layer = layui.layer;
+
+                    laypage.render({
+                        elem: 'demo4'
+                        ,count: totalPage*10
+                        ,first: false
+                        ,last: false
+                        ,jump: function(obj){
+                            $("#pageList").html("")
+                            pagination(obj.curr, $("#pageSize").val(), $("#keyword").val())
+                        }
+                    });
+
+                });
+            }
+        })
+
+
+    })
+    
+    var pagination = function (currentPage,pageSize,keyword) {
+        $.ajax({
+            type: "post",
+            data: {currentPage: currentPage, pageSize: pageSize, keyword: keyword},
+            url: "/gift/getAllGift",
+            dataType: "json",
+            success:function (data) {
+                var gifts = data.gifts.page
+                var pageSize = data.gifts.pageSize;
+                var leftHtml = ""
+                var rightHtml = ""
+                $.each(gifts,function (i,gift) {
+                    var game = gift.game;
+                    if(i<(gifts.length/2)){
+                        if (i=0){
+                            leftHtml += "<li class='li1 clearfix'>"
+                        }else{
+                            leftHtml += "<li class='clearfix'>"
+                        }
+                        leftHtml += "<a class='img-left' href='/gift/"+gift.id+"'>" +
+                            "<img src='"+game.icon+"' alt=''></a><div class='text-right'><h3>"+gift.name+"</h3>" +
+                            "<p>共 <span>"+gift.total+"</span>个</p><p>系统："
+                        if (game.platform == 1){
+                            leftHtml += "<i class='i1'><img src='images/gift1.png' alt=''></i>"
+                        }else if (game.platform == 2){
+                            leftHtml += "<i class='i2'><img src='images/gift2.png' alt=''></i>"
+                        }else{
+                            leftHtml += "<i class='i1'><img src='images/gift1.png' alt=''></i>|" +
+                                "<i class='i2'><img src='images/gift2.png' alt=''></i>"
+                        }
+                        leftHtml += "剩余： <span>"+gift.remainder+"</span>个</p></div><p class='time'>"+gift.createTime+"</p><a class='lingqu' href='/gift/"+gift.id+"'>领取</a></li>"
+                    }else{
+                        if (i=0){
+                            rightHtml += "<li class='li1 clearfix'>"
+                        }else{
+                            rightHtml += "<li class='clearfix'>"
+                        }
+                        rightHtml += "<a class='img-left' href='/gift/"+gift.id+"'>" +
+                            "<img src='"+game.icon+"' alt=''></a><div class='text-right'><h3>"+gift.name+"</h3>" +
+                            "<p>共 <span>"+gift.total+"</span>个</p><p>系统："
+                        if (game.platform == 1){
+                            rightHtml += "<i class='i1'><img src='images/gift1.png' alt=''></i>"
+                        }else if (game.platform == 2){
+                            rightHtml += "<i class='i2'><img src='images/gift2.png' alt=''></i>"
+                        }else{
+                            rightHtml += "<i class='i1'><img src='images/gift1.png' alt=''></i>|" +
+                                "<i class='i2'><img src='images/gift2.png' alt=''></i>"
+                        }
+                        rightHtml += "剩余： <span>"+gift.remainder+"</span>个</p></div><p class='time'>"+gift.createTime+"</p><a class='lingqu' href='/gift/"+gift.id+"'>领取</a></li>"
+                    }
+                })
+                $("#leftAll").html(leftHtml)
+                $("#rightAll").html(rightHtml)
+
+
+                $("#pageSize").val(pageSize)
+            }
+        })
+    }
+    //     <li class="li1 clearfix">
+    //     <a class="img-left" href="#">
+    //     <img src="http://p1.npcka.com/2016/07/28/579977882226e.png" alt="">
+    //     </a>
+    //     <div class="text-right">
+    //     <h3>
+    //     陆小凤传奇盛夏解暑礼包
+    //     </h3>
+    //     <p>
+    //     今日新增 <span>2</span>个
+    // 共 <span>16</span>个
+    // </p>
+    // <p>
+    // 系统：
+    // <i class="i1"><img src="images/gift1.png" alt=""></i>|
+    //     <i class="i2"><img src="images/gift2.png" alt=""></i>
+    // 剩余： <span>152635</span>个
+    // </p>
+    // </div>
+    // <p class="time">2016-10-25</p>
+    //     <a class="lingqu" href="#">领取</a>
+    //     </li>
+
+
+    var getNewest = function (nums) {
+        $.ajax({
+            type: "post",
+            url: "/gift/getNewestGift",
+            data: {nums:nums},
+            dataType: "json",
+            success:function (data) {
+                var gifts = data.gift;
+                $.each(gifts,function (i,gift) {
+                    var game = gift.game;
+                    var htmlText='';
+                    htmlText += "<li class='li'>" +
+                        "<span class='s1'>"+game.name.substr(0,5)+"</span>"
+                    if (game.platform == 1){
+                        htmlText += "<i class='i1 s2'><img src='images/gift1.png'></i>"
+                    }else if (game.platform == 2){
+                        htmlText += "<i class='i2 s2'><img src='images/gift2.png'></i>"
+                    }else{
+                        htmlText += "<i class='i1'><img src='images/gift1.png'></i>|" +
+                            "<i class='i2'><img src='images/gift2.png'></i>"
+                    }
+                    htmlText += "<span class='s2'>"+gift.createTime+"</span>" +
+                        "<a href='gift/"+gift.id+"'>领取</a></li>"
+                    $("#newestGift").append(htmlText)
+                })
+            }
+        })
+    }
+
+    var getPop = function () {
+        $.ajax({
+            type: "post",
+            url: "/gift/getPopGift",
+            dataType: "json",
+            success:function (data) {
+                var gifts = data.gift;
+                $.each(gifts,function (i,gift) {
+                    var game = gift.game;
+                    var textHtml = ''
+                    textHtml += "<li><div class='img-left'><img src='"+game.icon+"' alt=''></div><div class='txt-right'><p class='p-txt01'>"+gift.name+"</p><p>平台："
+                    if (game.platform == 1){
+                        textHtml += "<i class='icon-android-green'></i>"
+                    }
+                    else if (game.platform == 2){
+                        textHtml += "<i class='icon-apple-red'></i>"
+                    }else{
+                        textHtml += "<i class='icon-android-green'></i>|" +
+                                    "<i class='icon-apple-red'></i>"
+                    }
+                    textHtml += "<a class='btn' href='gift/"+gift.id+"'>领取</a></p></div></li>"
+                    $("#popGift").append(textHtml)
+                })
+            }
+        })
+    }
+</script>
 </html>
+
+
+<li class="clearfix">
+    <a class="img-left" href="#">
+        <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
+    </a>
+    <div class="text-right">
+        <h3>
+            陆小凤传奇盛夏解暑礼包
+        </h3>
+        <p>
+            今日新增 <span>2</span>个
+            共 <span>16</span>个
+        </p>
+        <p>
+            系统：
+            <i class="i1"><img src="images/gift1.png" alt=""></i>|
+            <i class="i2"><img src="images/gift2.png" alt=""></i>
+            剩余： <span>152635</span>个
+        </p>
+    </div>
+    <p class="time">2016-10-25</p>
+    <a class="lingqu" href="#">领取</a>
+</li>
+<li class="clearfix">
+    <a class="img-left" href="#">
+        <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
+    </a>
+    <div class="text-right">
+        <h3>
+            陆小凤传奇盛夏解暑礼包
+        </h3>
+        <p>
+            今日新增 <span>2</span>个
+            共 <span>16</span>个
+        </p>
+        <p>
+            系统：
+            <i class="i1"><img src="images/gift1.png" alt=""></i>|
+            <i class="i2"><img src="images/gift2.png" alt=""></i>
+            剩余： <span>152635</span>个
+        </p>
+    </div>
+    <p class="time">2016-10-25</p>
+    <a class="lingqu" href="#">领取</a>
+</li>
+<li class="clearfix">
+    <a class="img-left" href="#">
+        <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
+    </a>
+    <div class="text-right">
+        <h3>
+            陆小凤传奇盛夏解暑礼包
+        </h3>
+        <p>
+            今日新增 <span>2</span>个
+            共 <span>16</span>个
+        </p>
+        <p>
+            系统：
+            <i class="i1"><img src="images/gift1.png" alt=""></i>|
+            <i class="i2"><img src="images/gift2.png" alt=""></i>
+            剩余： <span>152635</span>个
+        </p>
+    </div>
+    <p class="time">2016-10-25</p>
+    <a class="lingqu" href="#">领取</a>
+</li>
+<li class="clearfix">
+    <a class="img-left" href="#">
+        <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
+    </a>
+    <div class="text-right">
+        <h3>
+            陆小凤传奇盛夏解暑礼包
+        </h3>
+        <p>
+            今日新增 <span>2</span>个
+            共 <span>16</span>个
+        </p>
+        <p>
+            系统：
+            <i class="i1"><img src="images/gift1.png" alt=""></i>|
+            <i class="i2"><img src="images/gift2.png" alt=""></i>
+            剩余： <span>152635</span>个
+        </p>
+    </div>
+    <p class="time">2016-10-25</p>
+    <a class="lingqu" href="#">领取</a>
+</li>
+<li class="clearfix">
+    <a class="img-left" href="#">
+        <img src="http://p1.npcka.com/2016/07/18/578c49bc8861c.jpg" alt="">
+    </a>
+    <div class="text-right">
+        <h3>
+            陆小凤传奇盛夏解暑礼包
+        </h3>
+        <p>
+            今日新增 <span>2</span>个
+            共 <span>16</span>个
+        </p>
+        <p>
+            系统：
+            <i class="i1"><img src="images/gift1.png" alt=""></i>|
+            <i class="i2"><img src="images/gift2.png" alt=""></i>
+            剩余： <span>152635</span>个
+        </p>
+    </div>
+    <p class="time">2016-10-25</p>
+    <a class="lingqu" href="#">领取</a>
+</li>

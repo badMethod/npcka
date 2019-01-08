@@ -60,5 +60,8 @@
     select id,game_id,name, `desc`, editor, create_time, image from guide where type = #{type} order by create_time desc limit #{page},#{pageSize}
   </select>
 
+    <select id="getGuideCount" resultType="java.lang.Integer">
+        select count(id) from guide where type = #{0}
+    </select>
 
 </mapper>

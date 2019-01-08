@@ -40,6 +40,44 @@
         </association>
     </resultMap>
 
+    <select id="getCurrentCount" resultType="java.lang.Integer">
+        SELECT count(t1.id)
+        FROM gift t1
+        LEFT JOIN game t2 ON t1.game_id = t2.id
+        WHERE (t1.name like concat('%',#{keyword},'%')  OR t2.name like concat('%',#{keyword},'%') ) AND t1.remainder>0
+    </select>
+
+    <select id="getAllGift" resultMap="GiftGameResultMap">
+        SELECT t1.id,t1.name,t1.create_time,t1.total,t1.remainder,
+         t2.id AS game_id,t2.platform,t2.icon,t2.update_time
+        FROM gift t1
+        LEFT JOIN game t2 ON t1.game_id = t2.id
+        WHERE (t1.name like concat('%',#{keyword},'%')  OR t2.name like concat('%',#{keyword},'%') ) AND t1.remainder>0
+        ORDER BY t1.remainder
+        LIMIT #{page},#{pageSize}
+    </select>
+
+
+    <select id="getIsPopGift" resultMap="GiftGameResultMap">
+        SELECT t1.id,t1.name,t2.id AS game_id,t2.platform,t2.icon
+        FROM gift t1
+        LEFT JOIN game t2 ON t1.game_id = t2.id
+        WHERE t1.is_pop = #{0}
+    </select>
+
+
+
+    <select id="getNewGift" resultMap="GiftGameResultMap">
+        SELECT t1.id,t1.create_time,t2.id AS game_id,t2.platform,t2.name,t2.update_time
+        FROM gift t1
+        LEFT JOIN game t2 ON t1.game_id = t2.id
+        ORDER BY t1.create_time DESC limit 0,#{nums}
+    </select>
+
+
+
+
+
     <select id="getGiftDetailById" resultMap="GiftGameResultMap">
         SELECT t1.*,t2.id as game_id,t2.name,t2.icon,t2.`desc`,t2.version,t2.size,t2.platform,t2.operator,t2.update_time
         FROM gift t1
@@ -83,4 +121,5 @@
     select id, game_id, name, total, remainder, content, method, create_time, is_pop
     from gift
   </select>
+
 </mapper>

@@ -1,10 +1,12 @@
 package pers.npcka.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
+    private static final long serialVersionUID = -7627056265000919013L;
     private Integer id;
 
     private String name;
@@ -143,25 +145,5 @@ public class Game {
 
     public void setDesc(String desc) {
         this.desc = desc == null ? null : desc.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", tag=" + tag +
-                ", image='" + image + '\'' +
-                ", version='" + version + '\'' +
-                ", size='" + size + '\'' +
-                ", platform=" + platform +
-                ", operator='" + operator + '\'' +
-                ", price=" + price +
-                ", updateTime=" + updateTime +
-                ", desc='" + desc + '\'' +
-                ", gifts=" + gifts +
-                ", gameServers=" + gameServers +
-                '}';
     }
 }

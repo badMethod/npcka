@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/1.png">
-    <link rel="stylesheet" href="swiper/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="layui/layui.css">
 </head>
 <body>
 <div class="warping">
@@ -43,18 +43,9 @@
     <div class="bannerbg">
     </div>
     <div class="zixun-content">
-
-        <ul class="clearfix" id="pageList">
-
-        </ul>
-        <div class="page">
-            <a class="a1" href="#">首页</a>
-            <a class="a2" href="#">上一页</a>
-            <a class="a3 on" href="#">1</a>
-            <a class="a3" href="#">2</a>
-            <a class="a3" href="#">3</a>
-            <a class="a4" href="#">下一页</a>
-            <a class="a5" href="#">末页</a>
+        <ul class="clearfix" id="pageList"></ul>
+        <div class="page" id="pagination">
+            <div id="demo4"></div>
         </div>
     </div>
     <footer>
@@ -68,7 +59,6 @@
                     <a href="#">手游发号</a>
                     <a href="#">网易发卡中心</a>
                     <a href="#">2144手机游戏</a>
-                    <span class="s2">（友链合作联系QQ:914755657）</span>
                 </p>
             </div>
             <div class="t1 clearfix">
@@ -79,7 +69,6 @@
                     <a href="#">着迷网</a>
                     <a href="#">超好玩</a>
                     <a href="#">第一应用</a>
-                    <span class="s2">（友链合作联系QQ:914755657）</span>
                 </p>
             </div>
             <div class="bottomfoot clearfix">
@@ -96,16 +85,49 @@
         </div>
     </footer>
 </div>
+<input type="hidden" id="pageSize" value="4">
 </body>
 <script src="js/jquery-3.1.0.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
 <script>
     $(document).ready(function () {
         $.ajax({
-            type: "get",
+            type: "post",
+            data: {pageSize:$("#pageSize").val()},
+            dataType: "json",
+            url:"/getGuideTotalPage",
+            success:function (data) {
+                var totalPage = data.totalPage;
+
+                layui.use(['laypage', 'layer'], function(){
+                    var laypage = layui.laypage
+                        ,layer = layui.layer;
+
+                    laypage.render({
+                        elem: 'demo4'
+                        ,count: totalPage*10
+                        ,first: false
+                        ,last: false
+                        ,jump: function(obj){
+                            $("#pageList").html("")
+                            pagination(obj.curr, $("#pageSize").val())
+                        }
+                    });
+
+                });
+            }
+        })
+
+    })
+
+    var pagination = function (currentPage,pageSize) {
+        $.ajax({
+            type: "post",
+            data: {currentPage: currentPage,pageSize:pageSize},
             url: "/getGuide",
             dataType: "json",
             success:function (data) {
-                var pages = data.page;
+                var pages = data.result.page;
                 $.each(pages, function (i,p) {
                     $("#pageList").append(
                         "<li class='clearfix'><div class='img-left'><a href='guide/"+p.id+"'><img src='"+p.image+"' alt=''></a></div>" +
@@ -115,8 +137,12 @@
                         "<a class='read' href='guide/"+p.id+"'>阅读全文</a></li>"
                     )
                 })
+                $("#pageSize").val(pageSize)
             }
         })
-    })
+    }
+
+
+
 </script>
 </html>

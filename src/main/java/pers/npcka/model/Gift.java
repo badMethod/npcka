@@ -1,8 +1,10 @@
 package pers.npcka.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Gift {
+public class Gift implements Serializable {
+    private static final long serialVersionUID = -2199484158761576113L;
     private Integer id;
 
     private Integer gameId;
@@ -101,21 +103,5 @@ public class Gift {
 
     public void setIsPop(Integer isPop) {
         this.isPop = isPop;
-    }
-
-    @Override
-    public String toString() {
-        return "Gift{" +
-                "id=" + id +
-                ", gameId=" + gameId +
-                ", name='" + name + '\'' +
-                ", total=" + total +
-                ", remainder=" + remainder +
-                ", content='" + content + '\'' +
-                ", method='" + method + '\'' +
-                ", createTime=" + createTime +
-                ", isPop=" + isPop +
-                ", game=" + game +
-                '}';
     }
 }

@@ -1,17 +1,15 @@
 package pers.npcka.controller;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pers.npcka.model.Guide;
 import pers.npcka.service.GuideService;
-import pers.npcka.utils.DateJsonValueProcessor;
+import pers.npcka.utils.DateJsonTool;
+import pers.npcka.model.Page;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -30,6 +28,29 @@ public class GuideController {
         return "guide";
     }
 
+    @RequestMapping(value = {"getNewsTotalPage", "getGuideTotalPage"}, method = RequestMethod.POST)
+    @ResponseBody
+    public String getTotalPage(HttpServletRequest request, @RequestParam Integer pageSize) {
+        JSONObject json = new JSONObject();
+        String msgCode = "200";
+        try {
+            int count = 0;
+            String uri = request.getRequestURI();
+            if (uri.contains("/getNewsTotalPage")) {
+                count = guideService.getNewsCount();
+            } else if (uri.contains("/getGuideTotalPage")) {
+                count = guideService.getGuideCount();
+            }
+            int totalPage = (count + pageSize - 1) / pageSize;  // （数据总数 + 页面大小 -1）/ 页面大小 = 总页数(int)
+            json.put("totalPage", totalPage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            msgCode = "500";
+        }
+        json.put("msgCode", msgCode);
+        return json.toString();
+    }
+
     /**
      * 同时接受两种url和两种请求，get请求实现页面初始加载，post请求实现分页功能
      *
@@ -38,37 +59,35 @@ public class GuideController {
      * @param pageSize    页面显示信息条数
      * @return
      */
-    @RequestMapping(value = {"getNews", "getGuide"}, method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = {"getNews", "getGuide"}, method = RequestMethod.POST)
     @ResponseBody
     public String getNewsAndGuide(HttpServletRequest request, Integer currentPage, Integer pageSize) {
         JSONObject json = new JSONObject();
         String msgCode = "200";
-        if (currentPage == null || currentPage <= 0) {
-            currentPage = 1;
-        }
-        if (pageSize == null || pageSize <= 0) {
-            pageSize = 5;
-        }
         try {
+            Page page = new Page(currentPage, pageSize);
+            Page pages = page.virify(page, 1, 10);
+
+
             String uri = request.getRequestURI();
-            List<Guide> page = null;
+            List<Guide> guide = null;
             if (uri.contains("/getNews")) {
-                page = guideService.getNewsListByPage(currentPage, pageSize);
+                guide = guideService.getNewsListByPage(currentPage, pageSize);
             } else if (uri.contains("/getGuide")) {
-                page = guideService.getGuideListByPage(currentPage, pageSize);
+                guide = guideService.getGuideListByPage(currentPage, pageSize);
             }
-            // 格式化Json中时间为字符串
-            JsonConfig jsonConfig = new JsonConfig();
-            jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm"));
-            String pageList = JSONArray.fromObject(page, jsonConfig).toString();
-            json.put("page", pageList);
+
+            pages.setPage(guide);
+
+            String pageList = DateJsonTool.getObjResult(pages, "yyyy-MM-dd hh:mm");
+
+            json.put("result", pageList);
+
         } catch (Exception e) {
             msgCode = "500";
             e.printStackTrace();
         }
         json.put("msgCode", msgCode);
-        json.put("currentPage", currentPage);
-        json.put("pageSize", pageSize);
         return json.toString();
     }
 
@@ -93,17 +112,14 @@ public class GuideController {
      * @param id 文章id
      * @return
      */
-    @RequestMapping(value = {"news/getNews","guide/getNews"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"news/getNews", "guide/getNews"}, method = RequestMethod.POST)
     @ResponseBody
     public String getNewsAndGuideDetail(@RequestParam Integer id, @RequestParam Integer type) {
         JSONObject json = new JSONObject();
         String msgCode = "200";
-        Guide guide = null;
         try {
-            guide = guideService.getGuideDetail(id);
-            JsonConfig jsonConfig = new JsonConfig();
-            jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy年MM月dd日"));
-            String guides = JSONObject.fromObject(guide, jsonConfig).toString();
+            Guide guide = guideService.getGuideDetail(id);
+            String guides = DateJsonTool.getObjResult(guide, "yyyy年MM月dd日");
             json.put("guide", guides);
         } catch (Exception e) {
             msgCode = "500";

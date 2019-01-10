@@ -23,3 +23,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+*.js linguist-language=Java
+*.css linguist-language=Java
+*.html linguist-language=Java

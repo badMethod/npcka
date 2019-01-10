@@ -7,6 +7,39 @@
     <result column="server_name" jdbcType="VARCHAR" property="serverName" />
     <result column="open_server_time" jdbcType="TIMESTAMP" property="openServerTime" />
   </resultMap>
+
+  <resultMap id="GameserverResultMap" type="pers.npcka.model.GameServer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="server_name" jdbcType="VARCHAR" property="serverName" />
+    <result column="open_server_time" jdbcType="TIMESTAMP" property="openServerTime" />
+    <association property="game" javaType="pers.npcka.model.Game">
+      <id column="game_id" jdbcType="INTEGER" property="id"/>
+      <result column="name" jdbcType="VARCHAR" property="name"/>
+      <result column="icon" jdbcType="VARCHAR" property="icon"/>
+      <result column="tag" jdbcType="INTEGER" property="tag"/>
+      <result column="image" jdbcType="VARCHAR" property="image"/>
+      <result column="version" jdbcType="VARCHAR" property="version"/>
+      <result column="size" jdbcType="VARCHAR" property="size"/>
+      <result column="platform" jdbcType="INTEGER" property="platform"/>
+      <result column="operator" jdbcType="VARCHAR" property="operator"/>
+      <result column="price" jdbcType="DECIMAL" property="price"/>
+      <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+      <result column="desc" jdbcType="LONGVARCHAR" property="desc"/>
+    </association>
+  </resultMap>
+
+  <select id="getServerByDate" resultMap="GameserverResultMap">
+    SELECT t1.id,t1.server_name,t1.open_server_time,
+    t2.id AS game_id,t2.name,t2.operator,t2.icon,t2.platform,t2.update_time
+    FROM game_server t1
+    LEFT JOIN game t2 ON t1.game_id = t2.id
+    WHERE DATE_FORMAT(t1.open_server_time,'%m-%d') = #{date}
+    ORDER BY t1.open_server_time
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from game_server
     where id = #{id,jdbcType=INTEGER}

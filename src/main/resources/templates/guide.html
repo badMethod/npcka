@@ -35,8 +35,8 @@
                 <li><a href="/answer">问答</a></li>
             </ul>
             <div class="input">
-                <input type="text" placeholder="请输入关键字">
-                <i></i>
+                <input type="text" id="keyword" placeholder="请输入关键字" onkeyup=" if(event.keyCode==13){search()}">
+                <i onclick="search()"></i>
             </div>
         </div>
     </nav>
@@ -87,13 +87,21 @@
 </div>
 <input type="hidden" id="pageSize" value="4">
 </body>
-<script src="js/jquery-3.1.0.min.js"></script>
+<script src="jQuery/jquery-3.1.0.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
 <script>
     $(document).ready(function () {
+        getAll();
+    })
+    
+    var search = function () {
+        getAll();
+    }
+
+    var getAll = function () {
         $.ajax({
             type: "post",
-            data: {pageSize:$("#pageSize").val()},
+            data: {pageSize:$("#pageSize").val(),keyword:$("#keyword").val()},
             dataType: "json",
             url:"/getGuideTotalPage",
             success:function (data) {
@@ -110,20 +118,19 @@
                         ,last: false
                         ,jump: function(obj){
                             $("#pageList").html("")
-                            pagination(obj.curr, $("#pageSize").val())
+                            pagination(obj.curr, $("#pageSize").val(),$("#keyword").val())
                         }
                     });
 
                 });
             }
         })
+    }
 
-    })
-
-    var pagination = function (currentPage,pageSize) {
+    var pagination = function (currentPage,pageSize,keyword) {
         $.ajax({
             type: "post",
-            data: {currentPage: currentPage,pageSize:pageSize},
+            data: {currentPage: currentPage,pageSize:pageSize,keyword:keyword},
             url: "/getGuide",
             dataType: "json",
             success:function (data) {

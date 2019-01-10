@@ -127,9 +127,8 @@
     </footer>
 </div>
 <input id="id" th:value="${id}" type="hidden">
-<input id="type" th:value="${type}" type="hidden">
 </body>
-<script src="/js/jquery-3.1.0.min.js"></script>
+<script src="/jQuery/jquery-3.1.0.min.js"></script>
 <script>
     $(document).ready(function () {
         var t = $("#type").val()
@@ -143,7 +142,7 @@
             url: "getNews",
             type: "post",
             dataType: "json",
-            data: {id: $("#id").val(), type: $("#type").val()},
+            data: {id: $("#id").val()},
             success: function (data) {
                 var guide = data.guide;
                 $("#name").html(guide.name);

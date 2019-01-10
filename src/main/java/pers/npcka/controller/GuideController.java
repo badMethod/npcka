@@ -30,16 +30,16 @@ public class GuideController {
 
     @RequestMapping(value = {"getNewsTotalPage", "getGuideTotalPage"}, method = RequestMethod.POST)
     @ResponseBody
-    public String getTotalPage(HttpServletRequest request, @RequestParam Integer pageSize) {
+    public String getTotalPage(HttpServletRequest request, @RequestParam Integer pageSize, @RequestParam String keyword) {
         JSONObject json = new JSONObject();
         String msgCode = "200";
         try {
             int count = 0;
             String uri = request.getRequestURI();
             if (uri.contains("/getNewsTotalPage")) {
-                count = guideService.getNewsCount();
+                count = guideService.getNewsCount(keyword);
             } else if (uri.contains("/getGuideTotalPage")) {
-                count = guideService.getGuideCount();
+                count = guideService.getGuideCount(keyword);
             }
             int totalPage = (count + pageSize - 1) / pageSize;  // （数据总数 + 页面大小 -1）/ 页面大小 = 总页数(int)
             json.put("totalPage", totalPage);
@@ -61,7 +61,7 @@ public class GuideController {
      */
     @RequestMapping(value = {"getNews", "getGuide"}, method = RequestMethod.POST)
     @ResponseBody
-    public String getNewsAndGuide(HttpServletRequest request, Integer currentPage, Integer pageSize) {
+    public String getNewsAndGuide(HttpServletRequest request, @RequestParam Integer currentPage, @RequestParam Integer pageSize, @RequestParam String keyword) {
         JSONObject json = new JSONObject();
         String msgCode = "200";
         try {
@@ -72,9 +72,9 @@ public class GuideController {
             String uri = request.getRequestURI();
             List<Guide> guide = null;
             if (uri.contains("/getNews")) {
-                guide = guideService.getNewsListByPage(currentPage, pageSize);
+                guide = guideService.getNewsListByPage(currentPage, pageSize, keyword);
             } else if (uri.contains("/getGuide")) {
-                guide = guideService.getGuideListByPage(currentPage, pageSize);
+                guide = guideService.getGuideListByPage(currentPage, pageSize, keyword);
             }
 
             pages.setPage(guide);
@@ -95,14 +95,6 @@ public class GuideController {
     @RequestMapping(value = {"/news/{id}", "/guide/{id}"})
     public String newDetail(HttpServletRequest request, @PathVariable Integer id) {
         request.setAttribute("id", id);
-        String uri = request.getRequestURI();
-        int type = 1;
-        if (uri.contains("news")) {
-            type = 1;
-        } else if (uri.contains("guide")) {
-            type = 2;
-        }
-        request.setAttribute("type", type);
         return "news-detail";
     }
 
@@ -114,7 +106,7 @@ public class GuideController {
      */
     @RequestMapping(value = {"news/getNews", "guide/getNews"}, method = RequestMethod.POST)
     @ResponseBody
-    public String getNewsAndGuideDetail(@RequestParam Integer id, @RequestParam Integer type) {
+    public String getNewsAndGuideDetail(@RequestParam Integer id) {
         JSONObject json = new JSONObject();
         String msgCode = "200";
         try {

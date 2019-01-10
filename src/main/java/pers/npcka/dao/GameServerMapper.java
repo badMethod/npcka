@@ -1,16 +1,22 @@
 package pers.npcka.dao;
 
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 import pers.npcka.model.GameServer;
 
+import java.util.List;
+
+@Repository
 public interface GameServerMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id) throws Exception;
 
-    int insert(GameServer record);
+    int insert(GameServer record) throws Exception;
 
-    GameServer selectByPrimaryKey(Integer id);
+    GameServer selectByPrimaryKey(Integer id) throws Exception;
 
-    List<GameServer> selectAll();
+    List<GameServer> selectAll() throws Exception;
 
-    int updateByPrimaryKey(GameServer record);
+    int updateByPrimaryKey(GameServer record) throws Exception;
+
+    List<GameServer> getServerByDate(@Param("date") String date) throws Exception;
 }

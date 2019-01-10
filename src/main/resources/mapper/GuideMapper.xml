@@ -57,11 +57,11 @@
   </select>
 
     <select id="getGuideListByPage" resultMap="BaseResultMap">
-    select id,game_id,name, `desc`, editor, create_time, image from guide where type = #{type} order by create_time desc limit #{page},#{pageSize}
+    select id,game_id,name, `desc`, editor, create_time, image from guide where type = #{type} and (name like concat('%',#{keyword},'%') or 'desc' like concat('%',#{keyword},'%'))  order by create_time desc limit #{page},#{pageSize}
   </select>
 
     <select id="getGuideCount" resultType="java.lang.Integer">
-        select count(id) from guide where type = #{0}
+        select count(id) from guide where type = #{type} AND (name LIKE concat('%',#{keyword},'%') OR 'desc' LIKE concat('%',#{keyword},'%'))
     </select>
 
 </mapper>

@@ -18,7 +18,7 @@ public interface GuideMapper {
 
     int updateByPrimaryKey(Guide record) throws Exception;
 
-    List<Guide> getGuideListByPage(@Param("page") int page, @Param("pageSize") int pageSize, @Param("type") int type) throws Exception;
+    List<Guide> getGuideListByPage(@Param("page") int page, @Param("pageSize") int pageSize, @Param("type") int type, @Param("keyword") String keyword) throws Exception;
 
-    int getGuideCount(int type) throws Exception;
+    int getGuideCount(@Param("type") int type, @Param("keyword") String keyword) throws Exception;
 }

@@ -18,13 +18,13 @@ public class GuideServiceImpl implements GuideService {
     private GuideMapper guideMapper;
 
     @Override
-    public List<Guide> getNewsListByPage(int currentPage, int pageSize) throws Exception {
-        return guideMapper.getGuideListByPage((currentPage - 1) * pageSize, pageSize, GuideType.News);
+    public List<Guide> getNewsListByPage(int currentPage, int pageSize, String keyword) throws Exception {
+        return guideMapper.getGuideListByPage((currentPage - 1) * pageSize, pageSize, GuideType.NEWS, keyword);
     }
 
     @Override
-    public List<Guide> getGuideListByPage(int currentPage, int pageSize) throws Exception {
-        return guideMapper.getGuideListByPage((currentPage - 1) * pageSize, pageSize, GuideType.GUIDE);
+    public List<Guide> getGuideListByPage(int currentPage, int pageSize, String keyword) throws Exception {
+        return guideMapper.getGuideListByPage((currentPage - 1) * pageSize, pageSize, GuideType.GUIDE, keyword);
     }
 
     @Override
@@ -33,13 +33,13 @@ public class GuideServiceImpl implements GuideService {
     }
 
     @Override
-    public int getGuideCount() throws Exception {
-        return guideMapper.getGuideCount(GuideType.GUIDE);
+    public int getGuideCount(String keyword) throws Exception {
+        return guideMapper.getGuideCount(GuideType.GUIDE, keyword);
     }
 
     @Override
-    public int getNewsCount() throws Exception {
-        return guideMapper.getGuideCount(GuideType.News);
+    public int getNewsCount(String keyword) throws Exception {
+        return guideMapper.getGuideCount(GuideType.NEWS,keyword);
     }
 
 }

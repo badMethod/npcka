@@ -13,6 +13,16 @@ public class GameServer implements Serializable {
 
     private Date openServerTime;
 
+    private Game game;
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public Integer getId() {
         return id;
     }

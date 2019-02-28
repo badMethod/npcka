@@ -10,6 +10,14 @@
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
+
+  <select id="goToLogin" resultMap="BaseResultMap">
+    SELECT *
+    FROM users
+    WHERE (email = #{account} OR phone = #{account}) AND PASSWORD = #{password}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from users
     where id = #{id,jdbcType=INTEGER}

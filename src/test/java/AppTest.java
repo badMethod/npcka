@@ -11,8 +11,10 @@ import pers.npcka.dao.UsersMapper;
 import pers.npcka.model.Game;
 import pers.npcka.model.Gift;
 import pers.npcka.model.Guide;
+import pers.npcka.model.Users;
 import pers.npcka.service.GiftService;
 import pers.npcka.service.GuideService;
+import pers.npcka.service.UserService;
 
 import java.util.List;
 
@@ -33,6 +35,8 @@ public class AppTest {
     GuideService guideService;
     @Autowired
     GiftService giftService;
+    @Autowired
+    UserService userService;
 
     @Test
     public void test() {
@@ -98,5 +102,12 @@ public class AppTest {
 
     @Test
     public void test6() {
+        Users users = null;
+        try {
+            users = userService.goToLogin("1@1.com", "111");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(users.getEmail());
     }
 }

@@ -24,27 +24,23 @@
 <div class="banner-zhuce">
     <div class="banner-zhuce-content">
         <div class="form clearfix">
-            <form class="form-left" action="">
+            <form class="form-left" id="form" action="##" method="post" onsubmit="return false">
                 <label>会员登录</label>
                 <div class="input email clearfix">
                     <i></i>
-                    <input type="email" placeholder="邮箱/手机">
+                    <input type="email" name="account" placeholder="邮箱">
                 </div>
                 <div class="input password">
                     <i></i>
-                    <input type="password" placeholder='密码'>
+                    <input type="password" name="password" placeholder='密码'>
                 </div>
-                <p class="forget">忘了密码？</p>
+                <!--<p class="forget">忘了密码？</p>-->
+                <p class="forget" id="message" style="color: red;"></p>
                 <div class="submit">
-                    <input class="denglu" type="submit" value="登录">
-                    <input class="sub denglusub" type="submit" value="注册">
+                    <input class="denglu" type="submit" onclick="signIn()" value="登录">
+                    <input class="sub denglusub" type="button" onclick="register()" value="注册">
                 </div>
             </form>
-            <div class="qq">
-                <p><img src="images/delu_03.png" alt=""></p>
-                <p><img src="images/delu_06.png" alt=""></p>
-                <p><img src="images/delu_08.png" alt=""></p>
-            </div>
         </div>
     </div>
 </div>
@@ -79,7 +75,7 @@
                 <img src="images/l2.png" alt="">
             </a>
             <div class="text-right">
-                <p>网站备案：《网络文化经营许可证》编号：鄂网文【2016】0855-011号  鄂ICP备11004443号</p>
+                <p>网站备案：《网络文化经营许可证》编号：鄂网文【2016】0855-011号 鄂ICP备11004443号</p>
                 <p>版权所有：武汉乐游天地科技有限公司</p>
                 <a href="#"><img src="images/gw_83x30.png" alt=""></a>
                 <a href="#"><img src="images/sm_124x47.png" alt=""></a>
@@ -88,4 +84,28 @@
     </div>
 </footer>
 </body>
+<script src="/jQuery/jquery-3.1.0.min.js"></script>
+<script>
+    var signIn = function () {
+        $.ajax({
+            url: "/signIn",
+            data: $("#form").serialize(),
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.msgCode === '600'){
+                    $("#message").text("账户或密码错误！")
+                }else if(data.msgCode === '200'){
+                    window.location.href = "/index"
+                }else{
+                    $("#message").text("服务器异常，请稍后再试！")
+                }
+            }
+        })
+    }
+
+    var register = function () {
+        window.location.href = "/register";
+    }
+</script>
 </html>
